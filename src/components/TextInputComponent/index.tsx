@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TextInput, Button } from 'suomifi-ui-components';
+import { TextInput } from 'suomifi-ui-components';
 type PropTypes = {
   name: string;
   labelText: string;

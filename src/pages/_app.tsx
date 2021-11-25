@@ -1,11 +1,17 @@
 import React from 'react';
 import { AppProps } from 'next/app';
+import styled from 'styled-components';
+import { suomifiDesignTokens } from 'suomifi-ui-components';
+
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { themes } from '../ui/themes';
 import { NextComponentType, NextPageContext } from 'next';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 
+import Header from '../components/Header';
+import Navigation from '../components/Navigation';
+import Footer from '../components/Footer';
 interface MyAppProps extends AppProps {
   Component: {
     Layout?: React.ExoticComponent<{
@@ -22,12 +28,44 @@ export default function App({ Component, pageProps }: MyAppProps) {
       <ThemeProvider theme={themes.light}>
         <GlobalStyles />
         <Layout>
-          <Component {...pageProps} />
+          <Container>
+            <Header />
+            <ContentWrapper>
+              <NavAndContent>
+                <Navigation />
+                <Main>
+                  <Component {...pageProps} />
+                </Main>
+              </NavAndContent>
+            </ContentWrapper>
+            <Footer />
+          </Container>
         </Layout>
       </ThemeProvider>
     </Provider>
   );
 }
+const Container = styled.div`
+  background: ${suomifiDesignTokens.colors.depthLight3};
+`;
+const ContentWrapper = styled.div`
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+`;
+const NavAndContent = styled.div`
+  border: 1px solid ${suomifiDesignTokens.colors.depthLight1};
+  background: ${suomifiDesignTokens.colors.whiteBase};
+  display: flex;
+  flex-grow: 1;
+  margin: 30px 30px 60px 30px;
+  flex-wrap: nowrap;
+  // overflow: hidden;
+`;
+const Main = styled.main`
+  margin: ${suomifiDesignTokens.spacing.s};
+  flex: 1;
+`;
 
 // Reset default browser styling
 const GlobalStyles = createGlobalStyle`
@@ -35,8 +73,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   }
 
   input {
