@@ -9,7 +9,9 @@ export default function Footer() {
     <Wrapper>
       <Top>
         <Link href="/">
-          <Logo heading="Suomi.fi" />
+          <a>
+            <Logo heading="Suomi.fi" />
+          </a>
         </Link>
       </Top>
       <Bottom>

@@ -41,9 +41,20 @@ class UserForm extends React.Component<InjectedFormProps<IProps> & IProps> {
   render() {
     const { pristine, submitting, reset, message } = this.props;
     const { oldEnough, formData } = this.state;
-    const RadioField = ({ input, meta, ...rest }) => (
-      <RadioButton {...input} {...rest} checked={input.value === rest.value} />
-    );
+    const RadioField = (props) => {
+      const { children, ...field } = props;
+
+      return (
+        <RadioButton
+          name={field.input.name}
+          value={field.value}
+          onChange={(event) => field.input.onChange(event)}
+          checked={field.input.value === field.value}
+        >
+          {children}
+        </RadioButton>
+      );
+    };
     const customWidthVal =
       formData &&
       formData.userForm &&
@@ -83,55 +94,40 @@ class UserForm extends React.Component<InjectedFormProps<IProps> & IProps> {
             Ota kenttä päälle tai pois päältä
           </ToggleButton>
         </div>
-        <RadioButtonGroup
-          labelText="Tilan valinta"
-          hintText="Valitse kentän tila"
-          name="test-group"
-          onChange={(value) => {
-            console.log('value', value);
-          }}
+
+        <Field
+          name="status"
+          id="first"
+          component={RadioField}
+          props={{ value: 'default' }}
         >
-          <Field
-            name="status"
-            component={RadioField}
-            props={{ value: 'default' }}
-          >
-            Normaali
-          </Field>
-          <Field
-            name="status"
-            component={RadioField}
-            props={{ value: 'success' }}
-          >
-            Onnistunut
-          </Field>
-          <Field
-            name="status"
-            component={RadioField}
-            props={{ value: 'error' }}
-          >
-            Virhetilanne
-          </Field>
-          {/*
-          <RadioButton ref={exampleRef1} value="value-test-1">
-            Choice 1
-          </RadioButton>
-          <RadioButton ref={exampleRef2} value="value-test-2">
-            Choice 2
-          </RadioButton>
-          <RadioButton ref={exampleRef3} value="value-test-3">
-            Choice 3
-          </RadioButton>
-        */}
-        </RadioButtonGroup>
+          Normaali
+        </Field>
+        <Field
+          name="status"
+          id="second"
+          component={RadioField}
+          props={{ value: 'success' }}
+        >
+          Onnistunut
+        </Field>
+        <Field
+          name="status"
+          id="third"
+          component={RadioField}
+          props={{ value: 'error' }}
+        >
+          Virhetilanne
+        </Field>
+
         <div>
-          <h2>How old you are?</h2>
+          <Heading variant="h2">Kuinka vanha olet</Heading>
           <Field
             name="correctAge"
             component={TextInputComponent}
-            labelText="Age"
+            labelText="Ikäsi"
             type="text"
-            visualPlaceholder="Insert age"
+            visualPlaceholder="Syötä ikäsi"
             disabled={!oldEnough}
             status={selectedStatus}
           />
@@ -149,7 +145,7 @@ class UserForm extends React.Component<InjectedFormProps<IProps> & IProps> {
           <Field
             name="customWidth"
             component={TextInputComponent}
-            labelText="350 pikseliä leveä kenttä"
+            labelText="vapaasti määriteltävä leveys"
             type="text"
             visualPlaceholder="syötä kentän leveys"
             wrapperProps={{ style: { width: customWidthVal + 'px' } }}
@@ -178,7 +174,11 @@ class UserForm extends React.Component<InjectedFormProps<IProps> & IProps> {
     );
   }
 }
-const initialData = { firstName: 'Pertti', lastName: 'Maatinen' };
+const initialData = {
+  firstName: 'Pertti',
+  lastName: 'Maatinen',
+  customWidth: 200,
+};
 let InitializeFromStateForm = reduxForm({
   form: 'userForm',
 })(UserForm);

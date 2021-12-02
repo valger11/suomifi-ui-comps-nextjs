@@ -7,7 +7,7 @@ export default function Logo(props) {
     <Wrapper>
       <Item viewBox="0 0 32 32" version="1.1" aria-hidden>
         <title>Design System</title>
-        <g stroke="none" fill="none" fill-rule="evenodd">
+        <g stroke="none" fill="none" fillRule="evenodd">
           <g>
             <path
               d="M31,32 L1,32 C0.45,32 0,31.55 0,31 L0,1 C0,0.45 0.45,0 1,0 L31,0 C31.55,0 32,0.45 32,1 L32,31 C32,31.55 31.55,32 31,32 Z"
