@@ -17,7 +17,7 @@
     "redux-form": "^8.3.7",
     "styled-components": "^5.2.1",
     "suomifi-design-tokens": "^3.1.1",
-    "suomifi-icons": "^5.0.0",
+    "suomifi-icons": "5.0.0",
     "suomifi-ui-components": "^6.1.0-beta.2"
   },
   "devDependencies": {

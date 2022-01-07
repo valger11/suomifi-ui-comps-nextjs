@@ -25,6 +25,9 @@ export default function Navigation() {
           <Item>
             <ActiveLink href="/form">Form</ActiveLink>
           </Item>
+          <Item>
+            <ActiveLink href="/icons">Icons</ActiveLink>
+          </Item>
         </List>
       </Nav>
     </Wrapper>
