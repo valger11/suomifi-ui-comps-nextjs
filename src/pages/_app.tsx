@@ -3,8 +3,7 @@ import { AppProps } from 'next/app';
 import styled from 'styled-components';
 import { suomifiDesignTokens } from 'suomifi-ui-components';
 
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { themes } from '../ui/themes';
+import { createGlobalStyle } from 'styled-components';
 import { NextComponentType, NextPageContext } from 'next';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
@@ -25,23 +24,21 @@ export default function App({ Component, pageProps }: MyAppProps) {
 
   return (
     <Provider store={store}>
-      <ThemeProvider theme={themes.light}>
-        <GlobalStyles />
-        <Layout>
-          <Container>
-            <Header />
-            <ContentWrapper>
-              <NavAndContent>
-                <Navigation />
-                <Main>
-                  <Component {...pageProps} />
-                </Main>
-              </NavAndContent>
-            </ContentWrapper>
-            <Footer />
-          </Container>
-        </Layout>
-      </ThemeProvider>
+      <GlobalStyles />
+      <Layout>
+        <Container>
+          <Header />
+          <ContentWrapper>
+            <NavAndContent>
+              <Navigation />
+              <Main>
+                <Component {...pageProps} />
+              </Main>
+            </NavAndContent>
+          </ContentWrapper>
+          <Footer />
+        </Container>
+      </Layout>
     </Provider>
   );
 }
