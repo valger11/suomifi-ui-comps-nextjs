@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import DefaultLayout from '../ui/layouts/DefaultLayout';
 import { Heading } from 'suomifi-ui-components';
 import { baseIcons, SuomifiIcon } from 'suomifi-icons';
 const StyledSuomifiIcon = styled(
@@ -44,5 +43,3 @@ const Container = styled.div`
   margin-top: 10px;
   background: rgb(247, 247, 248);
 `;
-
-icons.Layout = DefaultLayout;

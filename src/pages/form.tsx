@@ -279,13 +279,6 @@ class UserForm extends React.Component<InjectedFormProps<IProps> & IProps> {
               change(`singleSelectVal`, item);
             }}
             onChange={(event) => console.log('event', event)}
-            onBlur={() => {
-              if (!this.state.selectedValue) {
-                this.setStatus('error');
-              } else {
-                this.setStatus('default');
-              }
-            }}
             status={this.state.toolsStatus}
             statusText={
               this.state.toolsStatus === 'error'
@@ -391,6 +384,11 @@ class UserForm extends React.Component<InjectedFormProps<IProps> & IProps> {
             ariaSelectedAmountText="tools selected"
             ariaOptionsAvailableText="options available"
             ariaOptionChipRemovedText="removed"
+            onItemSelectionsChange={(item) => {
+              console.log('item', item);
+              //this.setSelectedValue(item);
+              change(`multiSelectVal`, item);
+            }}
           />
         </Block>
         <div>
