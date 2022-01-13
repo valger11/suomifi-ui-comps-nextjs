@@ -457,6 +457,14 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
+"@types/redux-form@^8.3.3":
+  version "8.3.3"
+  resolved "http://localhost:4873/@types%2fredux-form/-/redux-form-8.3.3.tgz#67869d6da2936bb2806509e86356422d2d6eb288"
+  integrity sha512-RaxUMCXs72H4vSfwU4i/86/RDbQ4p3rK4/4TQvQXHJ49GTyEgdUgWDIaOnKZc84iNwvJTwv+ohDbw/tfXxLg7Q==
+  dependencies:
+    "@types/react" "*"
+    redux "^3.6.0 || ^4.0.0"
+
 "@types/styled-components@^5.1.4":
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.4.tgz#11f167dbde268635c66adc89b5a5db2e69d75384"
@@ -466,6 +474,11 @@
     "@types/react" "*"
     "@types/react-native" "*"
     csstype "^3.0.2"
+
+"@types/underscore@^1.11.4":
+  version "1.11.4"
+  resolved "http://localhost:4873/@types%2funderscore/-/underscore-1.11.4.tgz#62e393f8bc4bd8a06154d110c7d042a93751def3"
+  integrity sha512-uO4CD2ELOjw8tasUrAhvnn2W4A0ZECOvMjCivJr4gA9pGgjv+qxKWY9GLTMVEK8ej85BxQOocUyE7hImmSQYcg==
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
@@ -3732,6 +3745,13 @@ redux-thunk@^2.3.0:
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
   integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
 
+"redux@^3.6.0 || ^4.0.0":
+  version "4.1.2"
+  resolved "http://localhost:4873/redux/-/redux-4.1.2.tgz#140f35426d99bb4729af760afcf79eaaac407104"
+  integrity sha512-SH8PglcebESbd/shgf6mii6EIoRM0zrQyjcuQ+ojmfxjTtE0z9Y8pa62iA/OJ58qjP6j27uyW4kUF4jl/jd6sw==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+
 redux@^4.0.0:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.5.tgz#4db5de5816e17891de8a80c424232d06f051d93f"
@@ -4550,6 +4570,11 @@ typescript@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.1.2.tgz#6369ef22516fe5e10304aae5a5c4862db55380e9"
   integrity sha512-thGloWsGH3SOxv1SoY7QojKi0tc+8FnOmiarEGMbd/lar7QOEd3hvlx3Fp5y6FlDUGl9L+pd4n2e+oToGMmhRQ==
+
+underscore@^1.13.2:
+  version "1.13.2"
+  resolved "http://localhost:4873/underscore/-/underscore-1.13.2.tgz#276cea1e8b9722a8dbed0100a407dda572125881"
+  integrity sha512-ekY1NhRzq0B08g4bGuX4wd2jZx5GnKz6mKSqFL4nqBlfyMGiG10gDFhDTMEfYmDL6Jy0FUIZp7wiRB+0BP7J2g==
 
 union-value@^1.0.0:
   version "1.0.1"

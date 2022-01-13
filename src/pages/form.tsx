@@ -1,55 +1,83 @@
 import * as React from 'react';
 import { reduxForm, InjectedFormProps, Field } from 'redux-form';
 import { connect } from 'react-redux';
-
+import _ from 'underscore';
 import {
   Block,
   Button,
   ToggleButton,
   RadioButton,
   Heading,
+  Alert,
   InlineAlert,
   SingleSelect,
   MultiSelect,
+  MultiSelectData,
+  SingleSelectData,
+  SingleSelectStatus,
 } from 'suomifi-ui-components';
+
+import singleSelectTools from '../data/singleSelectTools.json';
+import multiSelectTools from '../data/multiSelectTools.json';
 import TextInputComponent from '../components/TextInputComponent';
+import TextareaComponent from '../components/TextareaComponent';
+
 import store from '../redux/store';
-interface IProps {
-  message: string;
+
+interface FormState {
+  oldEnough: boolean;
+  formData: any;
+  alertVisible: boolean;
+  inlineAlertVisible: boolean;
+  toolsStatus: SingleSelectStatus;
+  selectedValue: SingleSelectDataCustom;
+  multiSelectSelectedValue: Array<MultiSelectDataCustom & MultiSelectData>;
 }
-
-class UserForm extends React.Component<InjectedFormProps<IProps> & IProps> {
-  constructor(props) {
-    super(props);
-    this.state = { oldEnough: false };
-    this.state = { status: 'Default' };
-
-    this.state = {
-      selectedValue: {
+interface SingleSelectDataCustom extends SingleSelectData {
+  name: string;
+  price: number;
+  tax: boolean;
+}
+interface MultiSelectDataCustom {
+  name: string;
+  price: number;
+  tax: boolean;
+}
+class ToolsForm extends React.Component<InjectedFormProps> {
+  state: FormState = {
+    toolsStatus: 'default',
+    formData: {},
+    oldEnough: false,
+    alertVisible: false,
+    inlineAlertVisible: false,
+    selectedValue: {
+      name: 'Hammer',
+      price: 15,
+      tax: true,
+      labelText: 'Hammer',
+      uniqueItemId: 'h9823523',
+    },
+    multiSelectSelectedValue: [
+      {
         name: 'Hammer',
         price: 15,
         tax: true,
         labelText: 'Hammer',
         uniqueItemId: 'h9823523',
       },
-      multiSelectSelectedValue: [
-        {
-          name: 'Hammer',
-          price: 15,
-          tax: true,
-          labelText: 'Hammer',
-          uniqueItemId: 'h9823523',
-        },
-        {
-          name: 'Powersaw',
-          price: 150,
-          tax: false,
-          labelText: 'Powersaw',
-          disabled: true,
-          uniqueItemId: 'ps9081231',
-        },
-      ],
-    };
+      {
+        name: 'Powersaw',
+        price: 150,
+        tax: false,
+        labelText: 'Powersaw',
+        disabled: true,
+        uniqueItemId: 'ps9081231',
+      },
+    ],
+  };
+
+  constructor(props: InjectedFormProps) {
+    super(props);
 
     store.subscribe(() => {
       this.setState({
@@ -58,7 +86,7 @@ class UserForm extends React.Component<InjectedFormProps<IProps> & IProps> {
     });
   }
 
-  required = (value) => (value ? undefined : 'Required');
+  required = (value: string) => (value ? undefined : 'Required');
 
   handleSubmit(values: any) {
     console.log('values', values);
@@ -68,153 +96,40 @@ class UserForm extends React.Component<InjectedFormProps<IProps> & IProps> {
       oldEnough: value,
     });
   }
-  setSelectedValue = (value) => {
+  setSelectedValue = (value: SingleSelectDataCustom) => {
     this.setState({
       selectedValue: value,
     });
   };
-  setToolsStatus = (value) => {
+  setToolsStatus = (value: SingleSelectStatus) => {
     this.setState({
       toolsStatus: value,
     });
   };
+  alertVisibleFunc = () => {
+    this.setState({
+      alertVisible: true,
+    });
+  };
+  closeAlert = () => {
+    this.setState({
+      alertVisible: false,
+    });
+  };
+  inlineAlertVisibleFunc = () => {
+    this.setState({
+      inlineAlertVisible: true,
+    });
+  };
+
   render() {
-    const { pristine, submitting, reset, message, change } = this.props;
-    const { oldEnough, formData } = this.state;
-    const tools = [
-      {
-        name: 'Jackhammer',
-        price: 230,
-        tax: false,
-        labelText: 'Jackhammer',
-        uniqueItemId: 'jh2435626',
-      },
-      {
-        name: 'Hammer',
-        price: 15,
-        tax: true,
-        labelText: 'Hammer',
-        uniqueItemId: 'h9823523',
-      },
-      {
-        name: 'Sledgehammer',
-        price: 36,
-        tax: false,
-        labelText: 'Sledgehammer',
-        uniqueItemId: 'sh908293482',
-      },
-      {
-        name: 'Spade',
-        price: 50,
-        tax: true,
-        labelText: 'Spade',
-        uniqueItemId: 's82502335',
-      },
-      {
-        name: 'Powersaw',
-        price: 150,
-        tax: false,
-        labelText: 'Powersaw',
-        disabled: true,
-        uniqueItemId: 'ps9081231',
-      },
-      {
-        name: 'Shovel',
-        price: 115,
-        tax: true,
-        labelText: 'Shovel',
-        uniqueItemId: 's05111511',
-      },
-      {
-        name: 'Iron stick',
-        price: 85,
-        tax: false,
-        labelText: 'Iron stick',
-        uniqueItemId: 'is3451261',
-      },
-      {
-        name: 'Rake',
-        price: 50,
-        tax: true,
-        labelText: 'Rake',
-        uniqueItemId: 'r09282626',
-      },
-      {
-        name: 'Motorsaw',
-        price: 450,
-        tax: false,
-        labelText: 'Motorsaw',
-        disabled: true,
-        uniqueItemId: 'ms6126266',
-      },
-    ];
-    const multiSelectTools = [
-      {
-        name: 'Jackhammer',
-        price: 230,
-        tax: false,
-        labelText: 'Jackhammer',
-        uniqueItemId: 'jh2435626',
-      },
-      {
-        name: 'Hammer',
-        price: 15,
-        tax: true,
-        labelText: 'Hammer',
-        uniqueItemId: 'h9823523',
-      },
-      {
-        name: 'Sledgehammer',
-        price: 36,
-        tax: false,
-        labelText: 'Sledgehammer',
-        uniqueItemId: 'sh908293482',
-      },
-      {
-        name: 'Spade',
-        price: 50,
-        tax: true,
-        labelText: 'Spade',
-        uniqueItemId: 's82502335',
-      },
-      {
-        name: 'Powersaw',
-        price: 150,
-        tax: false,
-        labelText: 'Powersaw',
-        disabled: true,
-        uniqueItemId: 'ps9081231',
-      },
-      {
-        name: 'Shovel',
-        price: 115,
-        tax: true,
-        labelText: 'Shovel',
-        uniqueItemId: 's05111511',
-      },
-      {
-        name: 'Iron stick',
-        price: 85,
-        tax: false,
-        labelText: 'Iron stick',
-        uniqueItemId: 'is3451261',
-      },
-      {
-        name: 'Rake',
-        price: 50,
-        tax: true,
-        labelText: 'Rake',
-        uniqueItemId: 'r09282626',
-      },
-      {
-        name: 'Motorsaw',
-        price: 450,
-        tax: false,
-        labelText: 'Motorsaw',
-        disabled: true,
-        uniqueItemId: 'ms6126266',
-      },
-    ];
+    const { pristine, submitting, reset, change } = this.props;
+    const {
+      oldEnough,
+      formData,
+      alertVisible,
+      inlineAlertVisible,
+    } = this.state;
 
     const defaultSelectedTools = [
       {
@@ -233,7 +148,7 @@ class UserForm extends React.Component<InjectedFormProps<IProps> & IProps> {
         uniqueItemId: 'ps9081231',
       },
     ];
-    const RadioField = (props) => {
+    const RadioField = (props: any) => {
       const { children, ...field } = props;
 
       return (
@@ -260,21 +175,53 @@ class UserForm extends React.Component<InjectedFormProps<IProps> & IProps> {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <InlineAlert>Now you can fill information in form</InlineAlert>
-        <Heading variant="h1">Testauslomake</Heading>
+        <div style={{ marginBottom: '10px' }}>
+          <Button
+            onClick={() => {
+              _(this.alertVisibleFunc).delay(4000);
+            }}
+          >
+            Delay alert for 4 seconds
+          </Button>
+        </div>
 
-        <div>{message}</div>
+        {alertVisible && (
+          <Alert
+            closeText="close"
+            onClick={() => {
+              this.closeAlert();
+            }}
+            style={{ marginBottom: '10px' }}
+          >
+            There is maintenance break next monday
+          </Alert>
+        )}
+        <div style={{ marginBottom: '10px' }}>
+          <Button
+            onClick={() => {
+              _(this.inlineAlertVisibleFunc).delay(4000);
+            }}
+          >
+            Delay inline alert for 4 seconds
+          </Button>
+        </div>
+        {inlineAlertVisible && (
+          <InlineAlert style={{ marginBottom: '10px' }}>
+            Now you can fill information in form
+          </InlineAlert>
+        )}
+        <Heading variant="h1">Testauslomake</Heading>
         <Block margin="m">
           <SingleSelect
             labelText="SingleSelect Tool"
             hintText="You can filter options by typing in the field"
             clearButtonLabel="Clear selection"
-            items={tools}
+            items={singleSelectTools}
             visualPlaceholder="Choose a tool"
             noItemsText="No matching options"
             defaultSelectedItem={this.state.selectedValue}
             ariaOptionsAvailableText="Options available"
-            onItemSelectionChange={(item) => {
+            onItemSelectionChange={(item: any) => {
               this.setSelectedValue(item);
               change(`singleSelectVal`, item);
             }}
@@ -306,12 +253,17 @@ class UserForm extends React.Component<InjectedFormProps<IProps> & IProps> {
             visualPlaceholder="Last Name"
           />
         </div>
+        <Field
+          name="notes"
+          hintText="Example hint text"
+          labelText="Textarea with hint and optional texts"
+          component={TextareaComponent}
+        />
         <div>
           <ToggleButton onClick={(checked) => this.setOldEnough(checked)}>
             Ota kenttä päälle tai pois päältä
           </ToggleButton>
         </div>
-
         <Field
           name="status"
           id="first"
@@ -336,7 +288,6 @@ class UserForm extends React.Component<InjectedFormProps<IProps> & IProps> {
         >
           Virhetilanne
         </Field>
-
         <div>
           <Heading variant="h2">Kuinka vanha olet</Heading>
           <Field
@@ -368,10 +319,8 @@ class UserForm extends React.Component<InjectedFormProps<IProps> & IProps> {
             wrapperProps={{ style: { width: customWidthVal + 'px' } }}
           />
         </div>
-
         <Block margin="m">
           <MultiSelect
-            name="multiSelect"
             labelText="MultiSelect Tools"
             hintText="You can filter options by typing in the field"
             items={multiSelectTools}
@@ -419,12 +368,13 @@ const initialData = {
   lastName: 'Maatinen',
   customWidth: 200,
   singleSelectVal: '',
+  notes: 'Notes',
 };
 let InitializeFromStateForm = reduxForm({
-  form: 'userForm',
-})(UserForm);
+  form: 'toolsForm',
+})(ToolsForm);
 
-InitializeFromStateForm = connect((state) => ({
+InitializeFromStateForm = connect(() => ({
   initialValues: initialData,
 }))(InitializeFromStateForm);
 
