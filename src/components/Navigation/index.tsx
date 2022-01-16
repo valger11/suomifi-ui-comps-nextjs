@@ -20,13 +20,13 @@ export default function Navigation() {
       <Nav>
         <List>
           <Item>
-            <ActiveLink href="/">Home</ActiveLink>
+            <ActiveLink href="/">Aloitussivu</ActiveLink>
           </Item>
           <Item>
-            <ActiveLink href="/form">Form</ActiveLink>
+            <ActiveLink href="/form">Työkalujen lainauskaavake</ActiveLink>
           </Item>
           <Item>
-            <ActiveLink href="/icons">Icons</ActiveLink>
+            <ActiveLink href="/icons">Ikonit</ActiveLink>
           </Item>
         </List>
       </Nav>

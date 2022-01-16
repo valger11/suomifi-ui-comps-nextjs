@@ -10,7 +10,7 @@ const StyledSuomifiIcon = styled(
 export default function icons() {
   return (
     <>
-      <Heading variant="h1">Aloitussivu</Heading>
+      <Heading variant="h1">Ikonisivu</Heading>
       <Container>
         {baseIcons.map((icon) => (
           <span key={icon}>

@@ -9,7 +9,7 @@ export default function Header() {
     <Wrapper>
       <Link href="/">
         <a>
-          <Logo heading="Design System Testaussivu" />
+          <Logo heading="Design System Testaussivusto" />
         </a>
       </Link>
     </Wrapper>

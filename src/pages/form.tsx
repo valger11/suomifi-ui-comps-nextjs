@@ -2,6 +2,8 @@ import * as React from 'react';
 import { reduxForm, InjectedFormProps, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import _ from 'underscore';
+import styled from 'styled-components';
+
 import {
   Block,
   Button,
@@ -43,6 +45,9 @@ interface MultiSelectDataCustom {
   price: number;
   tax: boolean;
 }
+const Wrapper = styled.div`
+  padding-bottom: 20px;
+`;
 class ToolsForm extends React.Component<InjectedFormProps> {
   state: FormState = {
     toolsStatus: 'default',
@@ -162,16 +167,6 @@ class ToolsForm extends React.Component<InjectedFormProps> {
         </RadioButton>
       );
     };
-    const customWidthVal =
-      formData &&
-      formData.userForm &&
-      formData.userForm.values &&
-      formData.userForm.values.customWidth;
-    const selectedStatus =
-      formData &&
-      formData.userForm &&
-      formData.userForm.values &&
-      formData.userForm.values.status;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -181,10 +176,9 @@ class ToolsForm extends React.Component<InjectedFormProps> {
               _(this.alertVisibleFunc).delay(4000);
             }}
           >
-            Delay alert for 4 seconds
+            Viivästä Alert neljäksi sekunniksi
           </Button>
         </div>
-
         {alertVisible && (
           <Alert
             closeText="close"
@@ -193,7 +187,7 @@ class ToolsForm extends React.Component<InjectedFormProps> {
             }}
             style={{ marginBottom: '10px' }}
           >
-            There is maintenance break next monday
+            Ensi maanantaina on huoltokatko
           </Alert>
         )}
         <div style={{ marginBottom: '10px' }}>
@@ -202,94 +196,66 @@ class ToolsForm extends React.Component<InjectedFormProps> {
               _(this.inlineAlertVisibleFunc).delay(4000);
             }}
           >
-            Delay inline alert for 4 seconds
+            Viivästä Inline Alert neljäksi sekunniksi
           </Button>
         </div>
         {inlineAlertVisible && (
           <InlineAlert style={{ marginBottom: '10px' }}>
-            Now you can fill information in form
+            Nyt voit syöttää tiedot
           </InlineAlert>
         )}
-        <Heading variant="h1">Testauslomake</Heading>
-        <Block margin="m">
-          <SingleSelect
-            labelText="SingleSelect Tool"
-            hintText="You can filter options by typing in the field"
-            clearButtonLabel="Clear selection"
-            items={singleSelectTools}
-            visualPlaceholder="Choose a tool"
-            noItemsText="No matching options"
-            defaultSelectedItem={this.state.selectedValue}
-            ariaOptionsAvailableText="Options available"
-            onItemSelectionChange={(item: any) => {
-              this.setSelectedValue(item);
-              change(`singleSelectVal`, item);
-            }}
-            onChange={(event) => console.log('event', event)}
-            status={this.state.toolsStatus}
-            statusText={
-              this.state.toolsStatus === 'error'
-                ? 'You must select a tool.'
-                : ''
-            }
-          />
-        </Block>
-        <div>
+        <Heading variant="h1">Työkalujen lainaajan tiedot</Heading>
+        <Wrapper>
+          {' '}
           <Field
             name="firstName"
             component={TextInputComponent}
-            labelText="Syötä etunimi"
+            labelText="Etunimi"
             type="text"
-            visualPlaceholder="First Name"
+            visualPlaceholder="Syötä etunimesi"
             validate={this.required}
           />
-        </div>
-        <div>
+        </Wrapper>
+        <Wrapper>
           <Field
             name="lastName"
             component={TextInputComponent}
-            labelText="Syötä sukunimi"
+            labelText="Sukunimi"
             type="text"
-            visualPlaceholder="Last Name"
+            visualPlaceholder="Syötä sukunimesi"
           />
-        </div>
-        <Field
-          name="notes"
-          hintText="Example hint text"
-          labelText="Textarea with hint and optional texts"
-          component={TextareaComponent}
-        />
-        <div>
+        </Wrapper>
+        <Wrapper>
+          <Field
+            name="rentDuration"
+            component={RadioField}
+            props={{ value: '1week' }}
+          >
+            Lainaan viikoksi
+          </Field>
+          <Field
+            name="rentDuration"
+            component={RadioField}
+            props={{ value: '2week' }}
+          >
+            Lainaan kahdeksi viikoksi
+          </Field>
+          <Field
+            name="rentDuration"
+            component={RadioField}
+            props={{ value: '3weeks' }}
+          >
+            Lainaan kolmeksi viikoksi
+          </Field>
+        </Wrapper>
+
+        <Heading variant="h2">Ikäsi</Heading>
+        <Wrapper>
           <ToggleButton onClick={(checked) => this.setOldEnough(checked)}>
-            Ota kenttä päälle tai pois päältä
+            Oletko yli 18-vuotias
           </ToggleButton>
-        </div>
-        <Field
-          name="status"
-          id="first"
-          component={RadioField}
-          props={{ value: 'default' }}
-        >
-          Normaali
-        </Field>
-        <Field
-          name="status"
-          id="second"
-          component={RadioField}
-          props={{ value: 'success' }}
-        >
-          Onnistunut
-        </Field>
-        <Field
-          name="status"
-          id="third"
-          component={RadioField}
-          props={{ value: 'error' }}
-        >
-          Virhetilanne
-        </Field>
-        <div>
-          <Heading variant="h2">Kuinka vanha olet</Heading>
+        </Wrapper>
+        <Wrapper>
           <Field
             name="correctAge"
             component={TextInputComponent}
@@ -297,42 +263,44 @@ class ToolsForm extends React.Component<InjectedFormProps> {
             type="text"
             visualPlaceholder="Syötä ikäsi"
             disabled={!oldEnough}
-            status={selectedStatus}
           />
-        </div>
-        <div>
-          <Field
-            name="fullWidth"
-            component={TextInputComponent}
-            labelText="Täysleveä kenttä"
-            type="text"
-            fullWidth
+        </Wrapper>
+        <Wrapper>
+          <SingleSelect
+            labelText="Jos haluat lainata vain yhden työkalun"
+            hintText="Elä varaa tällä kentällä, jos haluat varata useamman työkalun"
+            clearButtonLabel="Tyhjennä valinta"
+            items={singleSelectTools}
+            visualPlaceholder="Valitse työkalu"
+            noItemsText="hakuehdoilla ei löytynyt osumia"
+            defaultSelectedItem={this.state.selectedValue}
+            ariaOptionsAvailableText="Vaihtoehdot"
+            onItemSelectionChange={(item: any) => {
+              this.setSelectedValue(item);
+              change(`singleSelectVal`, item);
+            }}
+            status={this.state.toolsStatus}
+            statusText={
+              this.state.toolsStatus === 'error'
+                ? 'Sinun tulee valita työkalu.'
+                : ''
+            }
           />
-        </div>
-        <div>
-          <Field
-            name="customWidth"
-            component={TextInputComponent}
-            labelText="vapaasti määriteltävä leveys"
-            type="text"
-            visualPlaceholder="syötä kentän leveys"
-            wrapperProps={{ style: { width: customWidthVal + 'px' } }}
-          />
-        </div>
+        </Wrapper>
         <Block margin="m">
           <MultiSelect
-            labelText="MultiSelect Tools"
-            hintText="You can filter options by typing in the field"
+            labelText="Useamman työkalun lainaus"
+            hintText="Tällä kentällä voit valita useamman työkalun lainaukseen"
             items={multiSelectTools}
             chipListVisible={true}
-            ariaChipActionLabel="Remove"
-            removeAllButtonLabel="Remove all selections"
-            visualPlaceholder="Choose your tools"
-            noItemsText="No items"
+            ariaChipActionLabel="Poista"
+            removeAllButtonLabel="Poista kaikki valinnat"
+            visualPlaceholder="Valitse työkalut"
+            noItemsText="Ei valintoja"
             defaultSelectedItems={this.state.multiSelectSelectedValue}
-            ariaSelectedAmountText="tools selected"
-            ariaOptionsAvailableText="options available"
-            ariaOptionChipRemovedText="removed"
+            ariaSelectedAmountText="Valitut työkalut"
+            ariaOptionsAvailableText="Vaihtoehdot"
+            ariaOptionChipRemovedText="Poistetut"
             onItemSelectionsChange={(item) => {
               console.log('item', item);
               //this.setSelectedValue(item);
@@ -340,25 +308,39 @@ class ToolsForm extends React.Component<InjectedFormProps> {
             }}
           />
         </Block>
-        <div>
-          <Button type="submit" disabled={pristine || submitting}>
+        <Wrapper>
+          <Field
+            name="notes"
+            hintText="Syötälisätietoja liittyen lainaukseen"
+            labelText="Lisätiedot"
+            component={TextareaComponent}
+          />
+        </Wrapper>
+        <Wrapper>
+          <Button
+            type="submit"
+            disabled={pristine || submitting}
+            style={{ marginRight: '10px' }}
+          >
             Submit
           </Button>
           <Button type="button" variant="secondary" onClick={reset}>
             Clear Values
           </Button>
-        </div>
-        <Heading variant="h2">Kaavakkeen tietosisällöt</Heading>
-        {formData && formData.userForm && !formData.userForm.values && (
-          <p>Kaavakkeelle ei ole syötetty tietoja</p>
-        )}
-        <pre>
-          {JSON.stringify(
-            formData && formData.userForm && formData.userForm.values,
-            null,
-            2
+        </Wrapper>
+        <Wrapper>
+          <Heading variant="h2">Kaavakkeen tietosisällöt</Heading>
+          {formData && formData.toolsForm && !formData.toolsForm.values && (
+            <p>Kaavakkeelle ei ole syötetty tietoja</p>
           )}
-        </pre>
+          <pre>
+            {JSON.stringify(
+              formData && formData.toolsForm && formData.toolsForm.values,
+              null,
+              2
+            )}
+          </pre>
+        </Wrapper>
       </form>
     );
   }
@@ -366,9 +348,8 @@ class ToolsForm extends React.Component<InjectedFormProps> {
 const initialData = {
   firstName: 'Pertti',
   lastName: 'Maatinen',
-  customWidth: 200,
   singleSelectVal: '',
-  notes: 'Notes',
+  notes: 'Lisätietoja',
 };
 let InitializeFromStateForm = reduxForm({
   form: 'toolsForm',
