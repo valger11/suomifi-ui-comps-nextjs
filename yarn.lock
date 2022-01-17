@@ -132,17 +132,17 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.0", "@babel/runtime@^7.15.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.9.2":
   version "7.15.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
   integrity sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.16.3":
-  version "7.16.3"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.3.tgz#b86f0db02a04187a3c17caa77de69840165d42d5"
-  integrity sha512-WBwekcqacdY2e9AF/Q7WLFUWmdJGJTkbjqTjoMDgXkVZ3ZRUvOPsLb5KdwISoQVsbP+DQzVZW4Zhci0DvpbNTQ==
+"@babel/runtime@^7.14.0", "@babel/runtime@^7.15.4", "@babel/runtime@^7.16.7":
+  version "7.16.7"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.7.tgz#03ff99f64106588c9c403c6ecb8c3bafbbdff1fa"
+  integrity sha512-9E9FJowqAsytyOY6LG+1KuueckRL+aQW+mKvXRXnuFGyRAyepJPmEo9vgMfXUA6O9u3IeEdv9MAkppFcaQwogQ==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -389,11 +389,11 @@
     reselect "^4.0.0"
 
 "@tanem/svg-injector@^10.1.7":
-  version "10.1.11"
-  resolved "https://registry.yarnpkg.com/@tanem/svg-injector/-/svg-injector-10.1.11.tgz#10ee47473a7b7f24b0eb622adfc24bbc07ae7222"
-  integrity sha512-sRGAfVLpmxOwshsYU5adaatSgGxHHxRLH4Zk3q9TPs5l4Ah3tqsAprXuAKyQ3y7ELADifwMnDF6xi6ntHbi1CA==
+  version "10.1.15"
+  resolved "https://registry.yarnpkg.com/@tanem/svg-injector/-/svg-injector-10.1.15.tgz#b254eca61491ba111b824d7fa61392f0a3d98a9b"
+  integrity sha512-dR6iN4Ha6w9qcfEEgp3l8jcQHi2TDRjvfD38B6BJGBFObHbO8++/NujVUPlhM6ds5X8Lu5R1+MCig5LIw3bMrw==
   dependencies:
-    "@babel/runtime" "^7.16.3"
+    "@babel/runtime" "^7.16.7"
     content-type "^1.0.4"
     tslib "^2.3.1"
 
@@ -459,7 +459,7 @@
 
 "@types/redux-form@^8.3.3":
   version "8.3.3"
-  resolved "http://localhost:4873/@types%2fredux-form/-/redux-form-8.3.3.tgz#67869d6da2936bb2806509e86356422d2d6eb288"
+  resolved "https://registry.yarnpkg.com/@types/redux-form/-/redux-form-8.3.3.tgz#67869d6da2936bb2806509e86356422d2d6eb288"
   integrity sha512-RaxUMCXs72H4vSfwU4i/86/RDbQ4p3rK4/4TQvQXHJ49GTyEgdUgWDIaOnKZc84iNwvJTwv+ohDbw/tfXxLg7Q==
   dependencies:
     "@types/react" "*"
@@ -477,7 +477,7 @@
 
 "@types/underscore@^1.11.4":
   version "1.11.4"
-  resolved "http://localhost:4873/@types%2funderscore/-/underscore-1.11.4.tgz#62e393f8bc4bd8a06154d110c7d042a93751def3"
+  resolved "https://registry.yarnpkg.com/@types/underscore/-/underscore-1.11.4.tgz#62e393f8bc4bd8a06154d110c7d042a93751def3"
   integrity sha512-uO4CD2ELOjw8tasUrAhvnn2W4A0ZECOvMjCivJr4gA9pGgjv+qxKWY9GLTMVEK8ej85BxQOocUyE7hImmSQYcg==
 
 "@webassemblyjs/ast@1.9.0":
@@ -3747,7 +3747,7 @@ redux-thunk@^2.3.0:
 
 "redux@^3.6.0 || ^4.0.0":
   version "4.1.2"
-  resolved "http://localhost:4873/redux/-/redux-4.1.2.tgz#140f35426d99bb4729af760afcf79eaaac407104"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-4.1.2.tgz#140f35426d99bb4729af760afcf79eaaac407104"
   integrity sha512-SH8PglcebESbd/shgf6mii6EIoRM0zrQyjcuQ+ojmfxjTtE0z9Y8pa62iA/OJ58qjP6j27uyW4kUF4jl/jd6sw==
   dependencies:
     "@babel/runtime" "^7.9.2"
@@ -4322,15 +4322,20 @@ suomifi-design-tokens@3.1.1, suomifi-design-tokens@^3.1.1:
   resolved "https://registry.yarnpkg.com/suomifi-design-tokens/-/suomifi-design-tokens-3.1.1.tgz#5df2372d484152b4d361f656cfeefa1bdca4af55"
   integrity sha512-74RX9W99Hruk464ga11Fi+MaUYaQm5bLg8YI+kneGP9YktOXHtjgeQx75iDAqpNsXNBVnkQ/JjCfNsEX9hDz9g==
 
-suomifi-icons@5.0.0, suomifi-icons@^5.0.0:
+suomifi-icons@^5.0.0:
   version "5.0.0"
-  resolved "http://localhost:4873/suomifi-icons/-/suomifi-icons-5.0.0.tgz#8e4c3e9535065c32de757d3e6a75393a70414e73"
+  resolved "https://registry.yarnpkg.com/suomifi-icons/-/suomifi-icons-5.0.0.tgz#8e4c3e9535065c32de757d3e6a75393a70414e73"
   integrity sha512-tqLU2lfh9EyEgXCYeSYhJEhBUgc0nOlvs4e7TBLWMvTTnPPa14VCWSK1DL7HPHuwy95VODjjiHg1Y9B+vzoccA==
 
-suomifi-ui-components@^6.1.0-beta.2:
-  version "6.1.0-beta.2"
-  resolved "https://registry.yarnpkg.com/suomifi-ui-components/-/suomifi-ui-components-6.1.0-beta.2.tgz#2795d9f498ad65224230434457878fa9e750a9b6"
-  integrity sha512-rf4yYnIURBbOtCAD17Biw+rgeAEqjt8OqYBSkMMQofOiOiuS4mo7PesevUBM9AGyZZD1LaLtBGt+kbMucT/czQ==
+suomifi-icons@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/suomifi-icons/-/suomifi-icons-6.0.0.tgz#7a2b95ecb7221a650fbbd471b83c5c1ec08233b9"
+  integrity sha512-IeXJ67qpgSK259T9V7ytHRhD+bKsYIIugK6YG5hWVSQMLjhOroXYCLm6ptNtgKRRPJUJRkj1EaRQGDdOgRVP3A==
+
+suomifi-ui-components@^6.1.0-beta.3:
+  version "6.1.0-beta.3"
+  resolved "https://registry.yarnpkg.com/suomifi-ui-components/-/suomifi-ui-components-6.1.0-beta.3.tgz#ee5f08ec834a9561bcea9cadae5e1867c6c10db4"
+  integrity sha512-DtTui7MLKbhHohTt/ZR6AX9Cq9aw1ZPe1x066Y4I+so4zQQmgnhTUQ3dY3aDpClUw1XV02O0hqCYN5qcH1iBZg==
   dependencies:
     "@popperjs/core" "2.10.2"
     "@reach/listbox" "0.16.2"
@@ -4573,7 +4578,7 @@ typescript@^4.1.2:
 
 underscore@^1.13.2:
   version "1.13.2"
-  resolved "http://localhost:4873/underscore/-/underscore-1.13.2.tgz#276cea1e8b9722a8dbed0100a407dda572125881"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.13.2.tgz#276cea1e8b9722a8dbed0100a407dda572125881"
   integrity sha512-ekY1NhRzq0B08g4bGuX4wd2jZx5GnKz6mKSqFL4nqBlfyMGiG10gDFhDTMEfYmDL6Jy0FUIZp7wiRB+0BP7J2g==
 
 union-value@^1.0.0:
