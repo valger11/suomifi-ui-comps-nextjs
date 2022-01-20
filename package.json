@@ -20,7 +20,7 @@
     "styled-components": "^5.2.1",
     "suomifi-design-tokens": "^3.1.1",
     "suomifi-icons": "^6.0.0",
-    "suomifi-ui-components": "^6.1.0-beta.3",
+    "suomifi-ui-components": "6.1.0-test",
     "underscore": "^1.13.2"
   },
   "devDependencies": {

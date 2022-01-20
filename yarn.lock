@@ -4332,10 +4332,10 @@ suomifi-icons@^6.0.0:
   resolved "https://registry.yarnpkg.com/suomifi-icons/-/suomifi-icons-6.0.0.tgz#7a2b95ecb7221a650fbbd471b83c5c1ec08233b9"
   integrity sha512-IeXJ67qpgSK259T9V7ytHRhD+bKsYIIugK6YG5hWVSQMLjhOroXYCLm6ptNtgKRRPJUJRkj1EaRQGDdOgRVP3A==
 
-suomifi-ui-components@^6.1.0-beta.3:
-  version "6.1.0-beta.3"
-  resolved "https://registry.yarnpkg.com/suomifi-ui-components/-/suomifi-ui-components-6.1.0-beta.3.tgz#ee5f08ec834a9561bcea9cadae5e1867c6c10db4"
-  integrity sha512-DtTui7MLKbhHohTt/ZR6AX9Cq9aw1ZPe1x066Y4I+so4zQQmgnhTUQ3dY3aDpClUw1XV02O0hqCYN5qcH1iBZg==
+suomifi-ui-components@6.1.0-test:
+  version "6.1.0-test"
+  resolved "http://localhost:4873/suomifi-ui-components/-/suomifi-ui-components-6.1.0-test.tgz#c84f9bca4e174cd23b2ca6fdfd2bd8a7723a76b8"
+  integrity sha512-6fzBCY8iD89l8ckvp6gI2elUOfs7b+cPkQ01Njoz5d068Zqx+qek3mJcNcGnkHr45ddXRl+6C95cfD/2n5m3pw==
   dependencies:
     "@popperjs/core" "2.10.2"
     "@reach/listbox" "0.16.2"

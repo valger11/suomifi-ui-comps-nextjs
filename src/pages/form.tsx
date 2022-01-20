@@ -90,7 +90,11 @@ class ToolsForm extends React.Component<InjectedFormProps> {
       });
     });
   }
-
+  onKeyPress = (event: any) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  };
   required = (value: string) => (value ? undefined : 'Required');
 
   handleSubmit(values: any) {
@@ -206,7 +210,6 @@ class ToolsForm extends React.Component<InjectedFormProps> {
         )}
         <Heading variant="h1">Työkalujen lainaajan tiedot</Heading>
         <Wrapper>
-          {' '}
           <Field
             name="firstName"
             component={TextInputComponent}
@@ -302,8 +305,6 @@ class ToolsForm extends React.Component<InjectedFormProps> {
             ariaOptionsAvailableText="Vaihtoehdot"
             ariaOptionChipRemovedText="Poistetut"
             onItemSelectionsChange={(item) => {
-              console.log('item', item);
-              //this.setSelectedValue(item);
               change(`multiSelectVal`, item);
             }}
           />

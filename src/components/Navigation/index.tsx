@@ -28,6 +28,12 @@ export default function Navigation() {
           <Item>
             <ActiveLink href="/icons">Ikonit</ActiveLink>
           </Item>
+          <Item>
+            <ActiveLink href="/multiselect">Multi select</ActiveLink>
+          </Item>
+          <Item>
+            <ActiveLink href="/singleselect">Single select</ActiveLink>
+          </Item>
         </List>
       </Nav>
     </Wrapper>
